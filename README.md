@@ -1,5 +1,5 @@
 <h1 align="center">
-  Template Repo
+ OpenSoftwareLauncher GUI
   
   [![Stars](https://img.shields.io/github/stars/DeclanChidlow/Template?style=flat-square&logoColor=white)](https://github.com/DeclanChidlow/Template/stargazers)
   [![Forks](https://img.shields.io/github/forks/DeclanChidlow/Template?style=flat-square&logoColor=white)](https://github.com/DeclanChidlow/Template/network/members)
@@ -9,6 +9,6 @@
   [![Licence](https://img.shields.io/github/license/DeclanChidlow/Template?style=flat-square&logoColor=white)](https://github.com/DeclanChidlow/Template/blob/main/LICENCE)
 </h1>
 
-A template for my GitHub repositories.
+A multiplatform GTK based client for OSL
 
 ![LGPLv3 Badge](/README_RESOURCES/LGPLv3%20Logo.svg)
