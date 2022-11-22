@@ -11,6 +11,8 @@ const connect = document.getElementById("connect");
 
 const get = document.getElementById("get");
 
+const products = document.getElementById("products");
+
 // returning results to screen
 const result = document.getElementById("result");
 
@@ -43,3 +45,20 @@ get.addEventListener('click', async function get_click() {
 	result.innerHTML = stat;
 
 });
+
+
+
+// products
+products.addEventListener('click', async function products_click() {
+        let original = get.innerHTML;
+
+        get.innerHTML = "..";
+
+        let stat = await invoke('products');
+
+        get.innerHTML = original;
+
+        result.innerHTML = stat;
+
+});
+
