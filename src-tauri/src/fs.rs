@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-
+use serde::__private::from_utf8_lossy;
 
 use std::fs;
 use std::fs::File;
@@ -13,16 +13,6 @@ use crate::Build;
 use std::process::Command;
 
 
-pub async fn osl_install(payload: String) {
-
-    let _ = Command::new("wget")
-        .args(["-q", &payload])
-        .output();
-    println!("Finished");
-
-
-
-}
 
 pub fn file_init() {
 

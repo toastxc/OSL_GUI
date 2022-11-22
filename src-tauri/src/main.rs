@@ -181,34 +181,6 @@ async fn streams(va: String) -> String {
         };
     };
 
-
-            
-
-
-
-    /*
-
-
-    };
-
-   
-    let hash = for x in 0..release.len() {
-        println!("{} {} ", va_vec[0], release[x].productname);
-        if va_vec[0] == release[x].productname {
-           
-            for y in 0..release[x].streams.len() {
-
-                  println!("{:?}", release[x].streams[y].branchname);
-
-                if release[x].streams[y].branchname == va_vec[1] {
-
-                    println!("woooo");
-                };
-            };
-        };
-    };
-    println!("{:?}", hash);
-*/
     String::new()
 }
 

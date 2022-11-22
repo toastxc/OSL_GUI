@@ -12,9 +12,10 @@ const products = document.getElementById("products");
 
 const info = document.getElementById("info");
 
+const streams = document.getElementById("streams");
+
 const install = document.getElementById("install");
 
-const streams = document.getElementById("streams");
 
 
 // user input
@@ -70,10 +71,7 @@ products.addEventListener('click', async function products_click() {
 });
 
 
-
-
-
-
+// info
 info.addEventListener('click', async function info_click() {
         
 	let original = info.innerHTML;
@@ -90,6 +88,8 @@ info.addEventListener('click', async function info_click() {
 
 });
 
+
+// streams
 streams.addEventListener('click', async function streams_click() {
 
         let original = streams.innerHTML;
@@ -107,7 +107,7 @@ streams.addEventListener('click', async function streams_click() {
 });
 
 
-
+// redeem
 redeem.addEventListener('click', async function redeem_click() {
 
         let original = redeem.innerHTML;
@@ -126,4 +126,11 @@ redeem.addEventListener('click', async function redeem_click() {
 
 
 
+// install
+install.addEventListener('click', async function install_click() {
 
+        let original = install.innerHTML;
+
+        install.innerHTML = "no";
+
+});
