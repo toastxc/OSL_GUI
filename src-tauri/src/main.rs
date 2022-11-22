@@ -114,6 +114,106 @@ async fn info(products: String) -> String {
 // not sure what to do for installl
 
 
+#[tauri::command]
+async fn streams(va: String) -> String {
+
+    if va == "" {
+        return format!("Data required");
+    };
+
+    let mut va_vec: Vec<&str> =  va.split('/').collect::<Vec<&str>>();
+
+
+    // structure 
+    // product, stream
+
+    let release = read_rel();
+
+
+       let auth = details_deser();
+
+    if va_vec.len() > 0 {
+        for x in 0..release.len() {
+
+            if release[x].productname == va_vec[0] {
+
+                let product = &release[x];
+
+                let mut stre = String::new();
+            
+                for y in 0..product.streams.len() {
+                    stre += &format!("{}", product.streams[y].branchname);
+                };
+
+                if va_vec.len() < 2 {
+                    return format!("Available streams: {}", stre);
+                };
+
+                println!("\n\n\n{:?}", product);
+
+                for z in 0..product.streams.len() {
+                    
+                    if product.streams[z].branchname == va_vec[1] {
+
+   
+                        let hash = &product.streams[z].commithash;
+
+                        println!("{hash}");
+
+                        let streamf = osl_file(auth.url.clone(), hash.to_string(), auth.token.clone()).await;
+
+                        println!("{:?}", streamf);
+
+                        let mut greer = String::new();
+
+                        for p in 0..streamf.len() {
+
+                            greer += &format!("\n{}", streamf[p].location);
+                        
+
+                        };
+
+                        return greer
+
+                    };
+                };
+            };
+        };
+    };
+
+
+            
+
+
+
+    /*
+
+
+    };
+
+   
+    let hash = for x in 0..release.len() {
+        println!("{} {} ", va_vec[0], release[x].productname);
+        if va_vec[0] == release[x].productname {
+           
+            for y in 0..release[x].streams.len() {
+
+                  println!("{:?}", release[x].streams[y].branchname);
+
+                if release[x].streams[y].branchname == va_vec[1] {
+
+                    println!("woooo");
+                };
+            };
+        };
+    };
+    println!("{:?}", hash);
+*/
+    String::new()
+}
+
+
+
 
 #[tauri::command]
 async fn redeem(key: String) -> String {
@@ -121,6 +221,8 @@ async fn redeem(key: String) -> String {
     if key == "" {
         return format!("Insert key");
     };
+
+
 
     let auth = details_deser();
 
@@ -135,7 +237,7 @@ async fn redeem(key: String) -> String {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![connect, get, products, info, redeem])
+        .invoke_handler(tauri::generate_handler![connect, get, products, info, redeem, streams])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

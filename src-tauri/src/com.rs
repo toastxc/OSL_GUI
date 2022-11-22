@@ -8,7 +8,6 @@ pub async fn osl_redeem(key: String, d: Details) -> String{
 
     let link = format!("{}/license/redeem?token={}&key={key}", d.url, d.token);
 
-    println!("{}", link);
     let client: std::result::Result<reqwest::Response, reqwest::Error> =
         reqwest::Client::new()
         .get(&link)
@@ -32,6 +31,7 @@ pub async fn osl_file(url: String, hash: String, token: String) -> Vec<ProductFi
 
     let link = format!("{url}/file?hash={hash}&token={token}");
 
+    println!("{link}");
     let client: std::result::Result<reqwest::Response, reqwest::Error> =
         reqwest::Client::new()
         .get(&link)
@@ -50,7 +50,8 @@ pub async fn osl_file(url: String, hash: String, token: String) -> Vec<ProductFi
          serde_json::from_str(&cli_res.text().await.unwrap())
          .expect("failed to deserialize ProductFileResponse");
 
-     
+    
+     println!("{:?}", result);
      return result
 
 

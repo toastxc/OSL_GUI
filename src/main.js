@@ -14,6 +14,7 @@ const info = document.getElementById("info");
 
 const install = document.getElementById("install");
 
+const streams = document.getElementById("streams");
 
 
 // user input
@@ -89,6 +90,21 @@ info.addEventListener('click', async function info_click() {
 
 });
 
+streams.addEventListener('click', async function streams_click() {
+
+        let original = streams.innerHTML;
+
+        streams.innerHTML = "..";
+
+        let arg = input.value;
+
+        let stat = await invoke('streams', { va: arg });
+
+        streams.innerHTML = original;
+
+        result.innerHTML = stat;
+
+});
 
 
 
@@ -107,11 +123,6 @@ redeem.addEventListener('click', async function redeem_click() {
         result.innerHTML = stat;
 
 });
-
-
-
-
-
 
 
 
