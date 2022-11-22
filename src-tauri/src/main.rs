@@ -4,10 +4,10 @@
 )]
 
 
-
 mod com;
 use com::*;
-
+mod fs;
+use fs::*;
 pub mod structs {
     pub mod connection;
     pub mod details;
@@ -25,22 +25,16 @@ use crate::structs::connection::ProductFileResponse;
 #[tauri::command]
 async fn connect() -> String {
 
+    let auth = details_deser();
 
-    let url = "http://buildservice.api.minalogger.com".to_string();
-    let cres = osl_connect(url).await;
+    let cres = osl_connect(auth.url).await;
 
     let c = match cres {
         Err(e) => e.to_string(),
         Ok(c)  => format!("Version: {}\nAuthentication: {}\nProvider: {}",
             c.version, c.authprovider, c.authprovidersignup),
     };
-
-
-
     c
-
-
-
 
 
 }
@@ -50,11 +44,28 @@ async fn connect() -> String {
 async fn get() -> String {
 
 
+    let auth = details_deser();
 
-    "success".to_string()
+    let res = osl_release(auth).await;
 
+    println!("{:?}", res);
+
+    let mut returner = String::new();
+   
+    if res.len() == 0 {
+        return "No products found!".to_string()
+    };
+    for x in 0..res.len() {
+
+        returner = format!("returner {:?}", res[x]);
+    };
+
+    return returner
 
 }
+
+
+
 
 
 fn main() {

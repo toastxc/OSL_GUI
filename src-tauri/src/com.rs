@@ -99,6 +99,7 @@ pub async fn osl_release(d: Details) -> Vec<Build> {
     
     let link = format!("{}/release/latest/com.minalyze.minalogger?token={}", d.url, d.token);
 
+    println!("{link}");
     let client: std::result::Result<reqwest::Response, reqwest::Error> =
         reqwest::Client::new()
         .get(&link)

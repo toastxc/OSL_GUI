@@ -6,9 +6,12 @@ const { invoke } = window.__TAURI__.tauri;
 
 
 
-
+// elements for OSL commands
 const connect = document.getElementById("connect");
+
 const get = document.getElementById("get");
+
+// returning results to screen
 const result = document.getElementById("result");
 
 // connect 
@@ -27,15 +30,16 @@ connect.addEventListener('click', async function connect_click() {
 });
 
 
-// get 
+// get
 get.addEventListener('click', async function get_click() {
+	let original = get.innerHTML;
 
 	get.innerHTML = "..";
 
-	let getstat = await invoke('get');
+	let stat = await invoke('get');
 
-	console.log(getstat)
+	get.innerHTML = original;
 
-	get.innerHTML = getstat;
-})
+	result.innerHTML = stat;
 
+});
