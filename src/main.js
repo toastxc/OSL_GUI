@@ -3,15 +3,17 @@ const { invoke } = window.__TAURI__.tauri;
 
 
 
-
-
-
 // elements for OSL commands
 const connect = document.getElementById("connect");
 
 const get = document.getElementById("get");
 
 const products = document.getElementById("products");
+
+const info = document.getElementById("info");
+
+// user input
+const input = document.getElementById("input");
 
 // returning results to screen
 const result = document.getElementById("result");
@@ -50,13 +52,34 @@ get.addEventListener('click', async function get_click() {
 
 // products
 products.addEventListener('click', async function products_click() {
-        let original = get.innerHTML;
+        let original = products.innerHTML;
 
-        get.innerHTML = "..";
+        products.innerHTML = "..";
 
         let stat = await invoke('products');
 
-        get.innerHTML = original;
+        products.innerHTML = original;
+
+        result.innerHTML = stat;
+
+});
+
+
+
+
+
+
+info.addEventListener('click', async function info_click() {
+        
+	let original = info.innerHTML;
+
+        info.innerHTML = "..";
+
+	let va = input.value;
+
+	let stat = await invoke('info', { products: va });
+
+        info.innerHTML = original;
 
         result.innerHTML = stat;
 

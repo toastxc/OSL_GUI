@@ -84,10 +84,37 @@ async fn products() -> String {
     returner 
 }
 
+#[tauri::command]
+async fn info(products: String) -> String {
+
+    let res = read_rel();
+
+    if res.len() == 0 {
+        return format!("No products!");
+
+    };
+
+
+    if products == "" {
+        return format!("insert product name");
+    };
+       
+
+    for x in 0..res.len() {
+        if res[x].productname == products {
+            return format!("{:?}", res[x]);
+        };
+    };
+
+    return "No match found!".to_string()
+
+
+}
+
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![connect, get, products])
+        .invoke_handler(tauri::generate_handler![connect, get, products, info])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
