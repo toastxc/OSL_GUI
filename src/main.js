@@ -12,6 +12,10 @@ const products = document.getElementById("products");
 
 const info = document.getElementById("info");
 
+const install = document.getElementById("install");
+
+
+
 // user input
 const input = document.getElementById("input");
 
@@ -84,4 +88,31 @@ info.addEventListener('click', async function info_click() {
         result.innerHTML = stat;
 
 });
+
+
+
+
+redeem.addEventListener('click', async function redeem_click() {
+
+        let original = redeem.innerHTML;
+
+        redeem.innerHTML = "..";
+
+        let va = input.value;
+
+        let stat = await invoke('redeem', { key: va });
+
+        redeem.innerHTML = original;
+
+        result.innerHTML = stat;
+
+});
+
+
+
+
+
+
+
+
 

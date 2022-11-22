@@ -4,10 +4,11 @@ use crate::Connected;
 use crate::Build;
 use crate::ProductFileResponse;
 use serde_json::{Result};
-pub async fn osl_redeem(key: String, d: Details) {
+pub async fn osl_redeem(key: String, d: Details) -> String{
 
     let link = format!("{}/license/redeem?token={}&key={key}", d.url, d.token);
 
+    println!("{}", link);
     let client: std::result::Result<reqwest::Response, reqwest::Error> =
         reqwest::Client::new()
         .get(&link)
@@ -15,13 +16,14 @@ pub async fn osl_redeem(key: String, d: Details) {
 
     let cli_res = match client {
         Ok(_) => client.unwrap(),
-        Err(e) => {println!("{e}"); return}
+        Err(e) => {return format!("{e}")}
     };
 
     if cli_res.status() != 200 {
-        println!("{}", cli_res.status()); return
+        return format!("{}", cli_res.status())
     }
-    println!("{}", cli_res.text().await.unwrap());
+    
+    return format!("{}", cli_res.text().await.unwrap());
 
 
 

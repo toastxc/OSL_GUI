@@ -111,10 +111,31 @@ async fn info(products: String) -> String {
 
 }
 
+// not sure what to do for installl
+
+
+
+#[tauri::command]
+async fn redeem(key: String) -> String {
+
+    if key == "" {
+        return format!("Insert key");
+    };
+
+    let auth = details_deser();
+
+    let res = osl_redeem(key, auth).await;
+
+    return res
+
+
+}
+
+
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![connect, get, products, info])
+        .invoke_handler(tauri::generate_handler![connect, get, products, info, redeem])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
