@@ -54,13 +54,12 @@ async fn get() -> String {
    
     if res.len() == 0 {
         return "No products found!".to_string()
-    };
-    for x in 0..res.len() {
-
-        returner = format!("returner {:?}", res[x]);
+    }else if res.len() == 1 {
+        return format!("Successfully saved one product");
     };
 
-    return returner
+    format!("Successfully saved {} products", res.len())
+
 
 }
 
