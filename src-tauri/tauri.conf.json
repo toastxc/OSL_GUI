@@ -7,8 +7,8 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "osl_gui",
-    "version": "0.0.0"
+    "productName": "osl_gtk",
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -17,7 +17,7 @@
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
-      "copyright": "",
+      "copyright": "TXCGroup",
       "deb": {
         "depends": []
       },
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "xyz.toastxc.osl",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
