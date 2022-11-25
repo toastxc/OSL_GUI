@@ -9,6 +9,19 @@
   [![Licence](https://img.shields.io/github/license/DeclanChidlow/Template?style=flat-square&logoColor=white)](https://github.com/DeclanChidlow/Template/blob/main/LICENCE)
 </h1>
 
-A multiplatform GTK based client for OSL
+<p align="center">
+<img align="center" src="https://github.com/toastxc/OSL_GUI/blob/main/gtk.png?raw=true">
+</p>
+
+
+# Getting started 
+```bash
+git clone https://github.com/toastxc/OSL_GUI.git
+cd OSL_GUI
+cargo tauri build
+```
+
+This will generate a binary at `src-tauri/target/release`
+Windows support has not been tested and cannot be guaranteed/
 
 ![LGPLv3 Badge](/README_RESOURCES/LGPLv3%20Logo.svg)
